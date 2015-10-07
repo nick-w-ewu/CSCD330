@@ -41,6 +41,7 @@ public class ChatServer2
 							(new InputStreamReader(client.getInputStream()));
 					sender = new ServerThread(client);
 					sender.start();
+					System.out.println("Client Accepted");
 				}
 			}
 		}
