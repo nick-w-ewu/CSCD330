@@ -50,10 +50,10 @@ public class ServerThread extends Thread
 			PrintWriter send;
 			for(int i = 0; i < this.clients.length; i++)
 			{
-				if(clients[i] != null)
+				if(clients[i] != null && i != this.index)
 				{
 					send = new PrintWriter(clients[i].socket.getOutputStream(), true);
-					send.println(message);
+					send.println("Client " + clients[i].clientNum + ": " + message);
 				}
 			}
 		}
