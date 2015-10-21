@@ -4,12 +4,22 @@ public class Client
 {
 	public Socket socket;
 	public ServerThread clientThread;
-	public int clientNum;
+	private boolean connected;
 	
-	public Client(Socket socket, ServerThread thread, int num)
+	public Client(Socket socket, ServerThread thread)
 	{
 		this.socket = socket;
 		this.clientThread = thread;
-		this.clientNum = num;
+		this.connected = true;
+	}
+	
+	public void setConnected(boolean set)
+	{
+		this.connected = set;
+	}
+	
+	public boolean checkConnected()
+	{
+		return this.connected;
 	}
 }

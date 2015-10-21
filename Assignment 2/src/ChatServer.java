@@ -7,8 +7,7 @@ public class ChatServer
 
 	public static void main(String[] args)
 	{
-		int port = 1235;
-		int clientNum = 1;
+		int port = 1236;
 		Client[] clients = new Client[3];
 		
 		try
@@ -18,8 +17,7 @@ public class ChatServer
 			Socket client = server.accept();
 			ServerThread sender = new ServerThread(client, 0, clients);
 			int location;
-			addClient(clients, client, sender, 0, clientNum);
-			clientNum++;
+			addClient(clients, client, sender, 0);
 
 			while(true)
 			{
@@ -30,8 +28,7 @@ public class ChatServer
 					if(location != -1)
 					{
 						sender = new ServerThread(client, location, clients);
-						addClient(clients, client, sender, location, clientNum);
-						clientNum++;
+						addClient(clients, client, sender, location);
 					}
 					else
 					{
@@ -58,7 +55,7 @@ public class ChatServer
 	{
 		for(int i = 0; i < clients.length; i++)
 		{
-			if(clients[i] == null)
+			if(clients[i] == null || clients[i].checkConnected() == false)
 			{
 				return i;
 			}
@@ -66,9 +63,9 @@ public class ChatServer
 		return -1;
 	}
 
-	private synchronized static void addClient(Client[] clients, Socket client, ServerThread sender, int i, int num)
+	private synchronized static void addClient(Client[] clients, Socket client, ServerThread sender, int i)
 	{
-		clients[i] = new Client(client, sender, num);
+		clients[i] = new Client(client, sender);
 		sender.start();
 	}
 

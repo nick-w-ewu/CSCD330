@@ -38,7 +38,7 @@ public class ServerThread extends Thread
 		} 
 		catch (Exception e)
 		{
-
+			removeMe();
 		} 
 
 	}
@@ -50,10 +50,10 @@ public class ServerThread extends Thread
 			PrintWriter send;
 			for(int i = 0; i < this.clients.length; i++)
 			{
-				if(clients[i] != null && i != this.index)
+				if(clients[i] != null && i != this.index && clients[i].checkConnected() == true)
 				{
 					send = new PrintWriter(clients[i].socket.getOutputStream(), true);
-					send.println("Client " + clients[i].clientNum + ": " + message);
+					send.println(message);
 				}
 			}
 		}
@@ -65,6 +65,6 @@ public class ServerThread extends Thread
 	
 	private synchronized void removeMe()
 	{
-		this.clients[this.index] = null;
+		clients[this.index].setConnected(false);
 	}
 }

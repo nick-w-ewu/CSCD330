@@ -9,7 +9,7 @@ public class ChatClient2
 	public static void main(String[] args) 
 	{
 		String host = "127.0.0.1";
-		int port = 1235;
+		int port = 1236;
 		
 		try
 		{

@@ -21,7 +21,8 @@ public class ChatThread extends Thread
 		{
 			destination.close();
 			recive.close();
-		} catch (IOException e)
+		} 
+		catch (IOException e)
 		{
 			
 		}
