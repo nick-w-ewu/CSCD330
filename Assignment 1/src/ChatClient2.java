@@ -8,7 +8,7 @@ public class ChatClient2
 
 	public static void main(String[] args) 
 	{
-		String host = "10.104.137.63";
+		String host = "127.0.0.1";
 		int port = 9090;
 		
 		try
